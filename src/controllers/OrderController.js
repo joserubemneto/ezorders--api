@@ -14,6 +14,7 @@ class OrderController {
 
     const order = await Order.create({ table, description })
 
+    request.io.emit('newOrder', order)
     response.json(order)
   }
 
@@ -30,6 +31,7 @@ class OrderController {
         { new: true, runValidators: true }
       )
 
+      request.io.emit('statusChange', order)
       response.json(order)
     }
     catch(err){
