@@ -1,5 +1,12 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const routes = require('./routes')
+
+mongoose.connect('mongodb://localhost:2717/ezorders', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+})
 
 const app = express()
 app.use(express.json())
