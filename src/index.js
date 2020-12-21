@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const routes = require('./routes')
 const http = require('http')
 const socketIo = require('socket.io')
+const cors = require('cors')
 
 
 mongoose.connect('mongodb://localhost:2717/ezorders', {
@@ -20,6 +21,7 @@ app.use((request, response, next) => {
   request.io = io
   next()
 })
+app.use(cors())
 app.use(express.json())
 app.use(routes)
 
