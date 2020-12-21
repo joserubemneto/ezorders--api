@@ -11,6 +11,8 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    semicolon: 'never',
+    'semi-colon': 'never',
+    'class-methods-use-this': 'off',
+    'consistent-return': 'off',
   },
 };
