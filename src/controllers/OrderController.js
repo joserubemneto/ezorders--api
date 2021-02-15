@@ -1,43 +1,57 @@
-const Order = require('../models/Order')
+const Order = require("../models/Order");
 
 class OrderController {
   async index(request, response) {
-    const orders = await Order.find()
+    const orders = await Order.find();
 
-    response.json(orders)
+    response.json(orders);
   }
 
   async store(request, response) {
-    const { table, description } = request.body
+    const { table, description } = request.body;
 
-    if (!table || !description) return response.sendStatus(400)
+    if (!table || !description) return response.sendStatus(400);
 
-    const order = await Order.create({ table, description })
+    const order = await Order.create({ table, description });
 
-    request.io.emit('newOrder', order)
-    response.json(order)
+    request.io.emit("newOrder", order);
+    response.json(order);
   }
 
   async update(request, response) {
     try {
-      const { id } = request.params
-      const { status } = request.body
+      const { id } = request.params;
+      const { status } = request.body;
 
-      if (!status) return response.sendStatus(400)
+      if (!status) return response.sendStatus(400);
 
       const order = await Order.findByIdAndUpdate(
         { _id: id },
         { status },
         { new: true, runValidators: true }
-      )
+      );
 
-      request.io.emit('statusChange', order)
-      response.json(order)
+      request.io.emit("statusChange", order);
+      response.json(order);
+    } catch (err) {
+      response.sendStatus(500);
     }
-    catch(err){
-      response.sendStatus(500)
+  }
+
+  async delete(request, response) {
+    try {
+      await Order.deleteMany({ status: "DONE" }, (err) => {
+        if (err) throw err;
+        return response.sendStatus(200);
+      });
+
+      const currentOrders = await Order.find();
+
+      request.io.emit("cleanDoneOrders", currentOrders);
+    } catch (err) {
+      response.sendStatus(500);
     }
   }
 }
 
-module.exports = new OrderController()
+module.exports = new OrderController();
