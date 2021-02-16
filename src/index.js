@@ -6,7 +6,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
 
-mongoose.connect("mongodb://localhost:27017/ezorders", {
+mongoose.connect("mongodb://15.236.41.237:27017/ezorders", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
