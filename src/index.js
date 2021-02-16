@@ -6,11 +6,14 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
 
-mongoose.connect("mongodb://localhost:27017/ezorders", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  "mongodb+srv://ezorders:root@ezorders.lzwp9.mongodb.net/ezorders?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  }
+);
 
 const app = express();
 const server = http.Server(app);
