@@ -28,5 +28,5 @@ app.use(express.json());
 app.use(routes);
 
 server.listen(3001, () =>
-  console.log("> Server started at http://localhost:3001")
+  console.log("> Server started at http://localhost:3001 ok")
 );
