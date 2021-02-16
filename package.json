@@ -6,7 +6,7 @@
   "author": "Jose Rubem <joserubemn31@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "src/index",
+    "start": "node src/index",
     "dev": "nodemon src/index"
   },
   "devDependencies": {
