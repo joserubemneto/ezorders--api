@@ -1,5 +1,7 @@
 <h1 align="center">EzOrders API</h1>
 
+<p align="center">Api to receive, send and update order data on an order platform.</p>
+
 <p align="center">
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
